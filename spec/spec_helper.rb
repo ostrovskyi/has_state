@@ -97,4 +97,6 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   Kernel.srand config.seed
 =end
+
+  GEM_ROOT_DIR = File.dirname(__FILE__).chomp('/spec')
 end
