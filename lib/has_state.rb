@@ -1,0 +1,1 @@
+module HasState; end
