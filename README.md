@@ -39,6 +39,6 @@ champ.transition_to(:group_phase)
 * Receiving configurations
     * Initial state value;
     * Custom name for state field;
-* Transition module; 
+* Transitions module
     * Autosave;
 * Same symbol and string support
