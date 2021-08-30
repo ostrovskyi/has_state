@@ -3,3 +3,16 @@ AllCops:
 
 Style/Documentation:
   Enabled: false
+
+Gemspec/RequiredRubyVersion:
+  Enabled: false
+
+Lint/ConstantDefinitionInBlock:
+  Exclude: 
+    - 'spec/lib/has_state/inclusions/class_methods_spec.rb'
+    - 'spec/lib/has_state/inclusions/base_spec.rb'
+
+Naming/PredicateName:
+  Exclude: 
+    - 'lib/has_state/inclusions/class_methods.rb'
+    - 'spec/lib/has_state/inclusions/class_methods_spec.rb'
