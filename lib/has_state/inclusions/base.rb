@@ -3,8 +3,12 @@
 module HasState
   module Inclusions
     module Base
-      def state
-        'initial'
+      attr_accessor :state
+
+      private
+
+      def assign_initial_state
+        @state = 'initial' unless state
       end
     end
   end

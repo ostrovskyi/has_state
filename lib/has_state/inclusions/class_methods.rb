@@ -5,13 +5,17 @@ require 'logger'
 module HasState
   module Inclusions
     module ClassMethods
-      # rubocop:disable Naming/PredicateName
-      def has_state(*args)
-        logger = Logger.new($stdout)
-        logger.debug('HasState::Inclusions::ClassMethods.has_state(*args)')
-        logger.debug(*args)
+      def has_state(*args, &block)
+        puts(args)
+
+        original_method = instance_method(:initialize)
+        define_method(:initialize) do |*initialize_args, &initialize_block|
+          original_method.bind(self).call(*initialize_args, &initialize_block)
+          assign_initial_state
+        end
+
+        yield if block
       end
-      # rubocop:enable Naming/PredicateName
     end
   end
 end

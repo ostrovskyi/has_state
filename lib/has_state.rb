@@ -1,9 +1,12 @@
 # frozen_string_literal: true
 
-require_relative 'has_state/inclusions/class_methods'
 require_relative 'has_state/inclusions/base'
+require_relative 'has_state/inclusions/class_methods'
 
 module HasState
   include Inclusions::Base
-  include Inclusions::ClassMethods
+
+  def self.included(base)
+    base.extend Inclusions::ClassMethods
+  end
 end
