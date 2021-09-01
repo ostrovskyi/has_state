@@ -8,7 +8,7 @@ module HasState
       private
 
       def assign_initial_state
-        @state = 'initial' unless state
+        @state = self.class.class_variable_get(:@@options_provider).options[:default_value] unless state
       end
     end
   end
