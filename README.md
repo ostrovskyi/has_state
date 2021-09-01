@@ -36,9 +36,15 @@ champ.transition_to(:group_phase)
 ```
 
 ### To be implemented
+* Repository
+    * Test coverage
+    * CI
+    * Badges
 * Receiving configurations
-    * Initial state value;
     * Custom name for state field;
 * Transitions module
     * Autosave;
 * Same symbol and string support
+* Detailed errors for exceptions
+* Documentation
+* Beginner guides
