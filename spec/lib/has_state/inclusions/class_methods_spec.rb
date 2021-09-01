@@ -10,7 +10,7 @@ RSpec.describe HasState::Inclusions::ClassMethods do
           extend HasState::Inclusions::ClassMethods
 
           has_state do
-            puts 'block passed'
+            1 + 1
           end
         end
       end
