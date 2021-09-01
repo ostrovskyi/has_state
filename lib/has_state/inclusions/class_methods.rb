@@ -2,11 +2,17 @@
 
 require 'logger'
 
+require_relative '../config_overrides'
+require_relative '../input_mapper'
+require_relative '../options_provider'
+
 module HasState
   module Inclusions
     module ClassMethods
       def has_state(*args, &block)
-        puts(args)
+        config_overrides_params = HasState::InputMapper.new(args).output
+        config_overrides = HasState::ConfigOverrides.new(config_overrides_params)
+        class_variable_set(:@@options_provider, HasState::OptionsProvider.new(config_overrides))
 
         original_method = instance_method(:initialize)
         define_method(:initialize) do |*initialize_args, &initialize_block|
