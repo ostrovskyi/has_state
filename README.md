@@ -35,15 +35,30 @@ champ.transition_to(:group_phase)
 => HasStateTransitionError (No possible transitions from state 'drafts' to 'group_phase')
 ```
 
+If you need custom field name for state, use option `field`:
+```ruby
+class Championship
+    has_state field: :phase do
+        ...
+    end
+end
+```
+```ruby
+ch = Championship.last
+ch.phase
+=> :elimination
+```
+
 ### To be implemented
 * Repository
     * Test coverage
     * CI
     * Badges
-* Receiving configurations
-    * Custom name for state field;
+* Options
+    * Custom name for state field
+    * Force string values as methods result
 * Transitions module
-    * Autosave;
+    * Autosave
 * Same symbol and string support
 * Detailed errors for exceptions
 * Documentation
