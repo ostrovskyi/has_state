@@ -33,4 +33,18 @@ RSpec.describe 'module integration' do
       it { is_expected.to eq(:group_phase) }
     end
   end
+
+  describe 'specifying custom field name for state' do
+    class ChampionshipCustomField
+      include HasState
+
+      has_state field: :phase
+    end
+
+    subject { ChampionshipCustomField.new.phase }
+
+    describe '#phase' do
+      it { is_expected.to eq(:initial) }
+    end
+  end
 end
