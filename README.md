@@ -59,6 +59,7 @@ ch.phase
     * Force string values as methods result
 * Transitions module
     * Autosave
+    * Callbacks
 * Same symbol and string support
 * Detailed errors for exceptions
 * Documentation
