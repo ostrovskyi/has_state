@@ -1,15 +1,11 @@
 # frozen_string_literal: true
 
+require_relative 'assign_initial_state'
+
 module HasState
   module Inclusions
     module Base
-      attr_accessor :state
-
-      private
-
-      def assign_initial_state
-        @state = self.class.class_variable_get(:@@options_provider).options[:default_value] unless state
-      end
+      include AssignInitialState
     end
   end
 end
