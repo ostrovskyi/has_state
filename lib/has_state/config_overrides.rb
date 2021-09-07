@@ -2,7 +2,7 @@
 
 module HasState
   class ConfigOverrides
-    DEFAULT_KEYS = %i[default_value].freeze
+    DEFAULT_KEYS = %i[default_value field_name].freeze
 
     attr_reader(*DEFAULT_KEYS)
 
