@@ -20,6 +20,7 @@ Lint/ConstantDefinitionInBlock:
 
 Naming/PredicateName:
   Exclude: 
+    - 'lib/has_state/inclusions/assign_initial_state.rb'
     - 'lib/has_state/inclusions/class_methods.rb'
     - 'spec/lib/has_state/inclusions/class_methods_spec.rb'
 

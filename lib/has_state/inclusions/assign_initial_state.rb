@@ -5,12 +5,19 @@ module HasState
     module AssignInitialState
       private
 
-      def assign_initial_state
+      def has_state_assign_initial_value
+        options = self.class.class_variable_get(:@@options_provider).options
+        field_name = options[:field_name]
+        instance_variable_set("@#{field_name}", has_state_initial_value)
+      end
+
+      def has_state_initial_value
         options = self.class.class_variable_get(:@@options_provider).options
         field_name = options[:field_name]
         default_value = options[:default_value]
-        self.class.class_eval { attr_reader field_name }
-        instance_variable_set("@#{field_name}".to_sym, default_value) unless send(field_name)
+        current_value = send(field_name)
+
+        current_value || default_value
       end
     end
   end
