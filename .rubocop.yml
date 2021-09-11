@@ -14,8 +14,9 @@ Gemspec/RequiredRubyVersion:
 Lint/ConstantDefinitionInBlock:
   Exclude: 
     - 'spec/integration_spec.rb'
-    - 'spec/lib/has_state/inclusions/class_methods_spec.rb'
+    - 'spec/lib/has_state/declarations_spec.rb'
     - 'spec/lib/has_state/inclusions/base_spec.rb'
+    - 'spec/lib/has_state/inclusions/class_methods_spec.rb'
 
 Naming/PredicateName:
   Exclude: 
