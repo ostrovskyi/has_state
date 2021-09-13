@@ -24,6 +24,7 @@ module HasState
     def generate_output
       result = {}
       result[:default_value] = input(:default).to_sym if input(:default)
+      result[:field_name] = input(:field).to_sym if input(:field)
       result
     end
 

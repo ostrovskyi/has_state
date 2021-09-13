@@ -14,11 +14,8 @@ module HasState
         config_overrides = HasState::ConfigOverrides.new(config_overrides_params)
         class_variable_set(:@@options_provider, HasState::OptionsProvider.new(config_overrides))
 
-        original_method = instance_method(:initialize)
-        define_method(:initialize) do |*initialize_args, &initialize_block|
-          original_method.bind(self).call(*initialize_args, &initialize_block)
-          assign_initial_state
-        end
+        declare_has_state_reader
+        assign_has_state_field
 
         yield if block
       end

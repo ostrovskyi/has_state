@@ -51,15 +51,27 @@ ch.phase
 
 ### To be implemented
 * Repository
-    * Test coverage
     * CI
+    * Coverage
     * Badges
+* Full test coverage
 * Options
-    * Custom name for state field
-    * Force string values as methods result
+  * Custom name for state field
+  * Force string values as methods result
+* Requirements module
 * Transitions module
-    * Autosave
+  * Autosave
+  * Callbacks
+* Frakework/ORM connections
+  * ActiveRecord
+  * DataMapper
+  * GraphQL
+* Initializer config feature
+  * Default options (per-project)
+  * Framework or ORM specifying
 * Same symbol and string support
 * Detailed errors for exceptions
 * Documentation
+* Publish to rubygems
+* Fix all rubocop issues
 * Beginner guides

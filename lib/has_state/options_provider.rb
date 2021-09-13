@@ -5,6 +5,7 @@ require_relative 'config_overrides'
 module HasState
   class OptionsProvider
     DEFAULT_OPTIONS = {
+      field_name: :state,
       default_value: :initial
     }.freeze
 
