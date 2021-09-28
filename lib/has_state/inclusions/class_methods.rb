@@ -9,6 +9,8 @@ require_relative '../options_provider'
 module HasState
   module Inclusions
     module ClassMethods
+      private
+
       def has_state(*args, &block)
         config_overrides_params = HasState::InputMapper.new(args).output
         config_overrides = HasState::ConfigOverrides.new(config_overrides_params)
