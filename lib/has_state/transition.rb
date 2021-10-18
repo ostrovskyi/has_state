@@ -2,7 +2,7 @@
 
 module HasState
   class Transition
-    attr_reader :instance_method
+    attr_reader :name, :body, :instance_method
 
     def initialize(name:, body:, method: true)
       @name = name

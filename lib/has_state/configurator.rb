@@ -37,6 +37,8 @@ module HasState
       extend_constructor
 
       instance_eval(&block) if block
+
+      define_transitions_methods
     end
 
     def extend_constructor
@@ -44,6 +46,13 @@ module HasState
       base.define_method(:initialize) do |*initialize_args, &initialize_block|
         original_constructor.bind(self).call(*initialize_args, &initialize_block)
         has_state_assign_initial_value
+      end
+    end
+
+    def define_transitions_methods
+      base.class_variable_get(:@@has_state_transitions).each do |tr|
+        next unless tr.name
+        base.define_method tr.name, -> { tr.body.call }
       end
     end
 
