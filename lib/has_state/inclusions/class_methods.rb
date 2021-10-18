@@ -12,14 +12,7 @@ module HasState
       private
 
       def has_state(*args, &block)
-        config_overrides_params = HasState::InputMapper.new(args).output
-        config_overrides = HasState::ConfigOverrides.new(config_overrides_params)
-        class_variable_set(:@@options_provider, HasState::OptionsProvider.new(config_overrides))
-
-        declare_has_state_reader
-        assign_has_state_field
-
-        yield if block
+        HasState::Configurator.call(self, args, block)
       end
     end
   end

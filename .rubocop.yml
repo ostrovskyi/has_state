@@ -6,7 +6,7 @@ Style/Documentation:
 
 Style/ClassVars:
   Exclude:
-    - 'lib/has_state/inclusions/class_methods.rb'
+    - 'lib/has_state/configurator.rb'
 
 Gemspec/RequiredRubyVersion:
   Enabled: false
