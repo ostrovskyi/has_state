@@ -8,17 +8,21 @@
 
 ## Usage example
 ```ruby
+require 'has_state'
+
 class Championship
-    has_state do
-        transition :group_phase => :drafts do
-            ChampionshipDraft.create(championship: self)
-        end
-        
-        transition :drafts_passed, :drafts => :elimination_phase do
-            cd = ChampionshipDraft.find_by(championship_id: id)
-            cd.update(closed_at: DateTime.now)
-        end
+  extend HasState
+
+  has_state do
+    transition :group_phase => :drafts do
+      ChampionshipDraft.create(championship: self)
     end
+    
+    transition :drafts_passed, :drafts => :elimination_phase do
+      cd = ChampionshipDraft.find_by(championship_id: id)
+      cd.update(closed_at: DateTime.now)
+    end
+  end
 end
 ```
 Then you are able to read and manage state:
