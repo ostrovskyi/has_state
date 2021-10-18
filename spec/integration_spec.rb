@@ -5,7 +5,7 @@ require 'has_state'
 RSpec.describe 'module integration' do
   describe 'without any params' do
     class Championship
-      include HasState
+      extend HasState
 
       has_state
     end
@@ -22,7 +22,7 @@ RSpec.describe 'module integration' do
 
   describe 'specifying custom initial value' do
     class ChampionshipCustomValue
-      include HasState
+      extend HasState
 
       has_state default: :group_phase
     end
@@ -36,7 +36,7 @@ RSpec.describe 'module integration' do
 
   describe 'specifying custom field name for state' do
     class ChampionshipCustomField
-      include HasState
+      extend HasState
 
       has_state field: :phase
     end

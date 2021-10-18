@@ -15,14 +15,11 @@ Lint/ConstantDefinitionInBlock:
   Exclude: 
     - 'spec/integration_spec.rb'
     - 'spec/lib/has_state/declarations_spec.rb'
-    - 'spec/lib/has_state/inclusions/base_spec.rb'
-    - 'spec/lib/has_state/inclusions/class_methods_spec.rb'
 
 Naming/PredicateName:
   Exclude: 
-    - 'lib/has_state/inclusions/assign_initial_state.rb'
-    - 'lib/has_state/inclusions/class_methods.rb'
-    - 'spec/lib/has_state/inclusions/class_methods_spec.rb'
+    - 'lib/has_state.rb'
+    - 'lib/has_state/assign_initial_value.rb'
 
 Metrics/BlockLength:
   IgnoredMethods: ['describe']
