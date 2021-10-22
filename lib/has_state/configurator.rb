@@ -52,7 +52,8 @@ module HasState
     def define_transitions_methods
       base.class_variable_get(:@@has_state_transitions).each do |tr|
         next unless tr.name
-        base.define_method tr.name, -> { tr.body.call }
+
+        base.define_method tr.name, -> { has_state_perform_transition(tr) }
       end
     end
 
@@ -61,7 +62,13 @@ module HasState
     end
 
     def transition(*args, &block)
-      append_transition(Transition.new(body: block, name: args[0], method: true))
+      if args[0].is_a?(Symbol)
+        name = args[0]
+        from = args[1].first.first
+        to = args[1].first.last
+      end
+
+      append_transition(Transition.new(body: block, from: from, to: to, name: name, method: true))
     end
   end
 end

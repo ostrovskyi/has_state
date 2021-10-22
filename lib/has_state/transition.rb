@@ -2,14 +2,20 @@
 
 module HasState
   class Transition
-    attr_reader :name, :body, :instance_method
+    attr_reader :name, :from, :to, :body, :instance_method
 
-    def initialize(name:, body:, method: true)
+    def initialize(to:, body:, name: nil, from: nil, method: true)
       @name = name
+      @from = from
+      @to = to
       @body = body
       @instance_method = method
 
-      raise ArgumentError unless @body
+      raise ArgumentError unless @body && @from
+    end
+
+    def from_any?
+      raise(NotImplementedError)
     end
   end
 end
