@@ -1,15 +1,21 @@
 # frozen_string_literal: true
 
+require_relative 'has_state/assign_initial_value'
+require_relative 'has_state/configurator'
 require_relative 'has_state/declarations'
-require_relative 'has_state/inclusions/base'
-require_relative 'has_state/inclusions/class_methods'
+require_relative 'has_state/transitions'
 
 module HasState
-  include Inclusions::Base
-
-  def self.included(base)
+  def self.extended(base)
     base.extend Declarations
 
-    base.extend Inclusions::ClassMethods
+    base.include AssignInitialValue
+    base.include Transitions
+  end
+
+  private
+
+  def has_state(*args, &block)
+    HasState::Configurator.call(self, args, block)
   end
 end

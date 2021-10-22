@@ -1,22 +1,28 @@
 # has_state
 **Ruby state management gem**
 
+[![CircleCI](https://circleci.com/gh/ostrovskyi/has_state.svg?style=shield)](https://circleci.com/gh/ostrovskyi/has_state)
+
 #### Available features:
-* Support **Ruby on Rails**
+* Support plain Ruby, **Ruby on Rails**
 
 ## Usage example
 ```ruby
+require 'has_state'
+
 class Championship
-    has_state do
-        transition :group_phase => :drafts do
-            ChampionshipDraft.create(championship: self)
-        end
-        
-        transition :drafts => :elimination_phase do
-            cd = ChampionshipDraft.find_by(championship_id: id)
-            cd.update(closed_at: DateTime.now)
-        end
+  extend HasState
+
+  has_state do
+    transition :group_phase => :drafts do
+      ChampionshipDraft.create(championship: self)
     end
+    
+    transition :drafts_passed, :drafts => :elimination_phase do
+      cd = ChampionshipDraft.find_by(championship_id: id)
+      cd.update(closed_at: DateTime.now)
+    end
+  end
 end
 ```
 Then you are able to read and manage state:
@@ -30,38 +36,42 @@ champ.transition_to(:drafts)
 
 champ.state
 => :drafts
-
-champ.transition_to(:group_phase)
-=> HasStateTransitionError (No possible transitions from state 'drafts' to 'group_phase')
 ```
 
-If you need custom field name for state, use option `field`:
+### Customization
+#### Change initial state value
+```ruby
+class Event
+    has_state default: :pending do
+        ...
+    end
+end
+
+event = Event.all.sample
+event.state
+=> :pending
+```
+
+#### Use custom field name
 ```ruby
 class Championship
     has_state field: :phase do
         ...
     end
 end
-```
-```ruby
+
 ch = Championship.last
 ch.phase
 => :elimination
 ```
 
 ### To be implemented
-* Repository
-    * CI
-    * Coverage
-    * Badges
-* Full test coverage
 * Options
-  * Custom name for state field
   * Force string values as methods result
-* Requirements module
 * Transitions module
   * Autosave
   * Callbacks
+* Requirements module
 * Frakework/ORM connections
   * ActiveRecord
   * DataMapper
@@ -71,7 +81,6 @@ ch.phase
   * Framework or ORM specifying
 * Same symbol and string support
 * Detailed errors for exceptions
+* Fix all rubocop issues
 * Documentation
 * Publish to rubygems
-* Fix all rubocop issues
-* Beginner guides
